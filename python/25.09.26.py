@@ -39,4 +39,24 @@ def sieve_of_eratosthenes(n):
                 is_prime[i] = False
     return [i for i, prime in enumerate(is_prime) if prime]
 print(sieve_of_eratosthenes(int(input())))
+#6
+n = int(input())
+
+a = 1  # Начало диапазона (1, 10, 100, ...)
+b = 1  # Количество цифр в числах текущего диапазона (1, 2, 3, ...)
+c = 9  # Количество чисел в диапазоне (всегда 9 для формулы w)
+w = a * b * c  # Всего цифр в текущем диапазоне (9, 180, 2700, ...)
+
+while n > w:
+    n -= w
+    a *= 10
+    b += 1
+    w = a * b * c
+
+# Вместо медленного цикла for вычисляем за одну строку:
+target_number = a + (n - 1) // b
+digit_index = (n - 1) % b
+
+answer = str(target_number)[digit_index]
+print(answer)
 
